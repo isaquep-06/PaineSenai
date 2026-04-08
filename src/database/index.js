@@ -1,0 +1,23 @@
+const { Sequelize } = require('sequelize');
+
+// Connection string fornecida pelo Neon
+const connectionString = 'postgresql://neondb_owner:npg_rinbQdyPv8z5@ep-fragrant-sun-acpjeupu-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
+
+const sequelize = new Sequelize(connectionString, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: { rejectUnauthorized: false } // importante para Neon
+  },
+  logging: false // opcional, tira logs de SQL no console
+});
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Conexão com Neon OK!🟢🟢')
+  } catch (err) {
+    console.error('Erro de conexão: 🔴🔴', err);
+  }
+})();
+
+module.exports = sequelize;
