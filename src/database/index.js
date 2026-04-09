@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from "sequelize";
 
 // Connection string fornecida pelo Neon
 const connectionString = 'postgresql://neondb_owner:npg_rinbQdyPv8z5@ep-fragrant-sun-acpjeupu-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
@@ -20,4 +20,4 @@ const sequelize = new Sequelize(connectionString, {
   }
 })();
 
-module.exports = sequelize;
+export default sequelize;

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Turmas TV</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+      color: #000;
+    }
+
+    header {
+      background-color: #004080;
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    header .data-hora {
+      font-size: 20px;
+    }
+
+    main {
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 18px;
+    }
+
+    thead {
+      background-color: #0070c0;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #e6f0ff;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    tbody tr:hover {
+      background-color: #cce0ff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div>Painel de Turmas - SENAI</div>
+    <div class="data-hora" id="dataHora"></div>
+  </header>
+
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Turma</th>
+          <th>Aula 1</th>
+          <th>Aula 2</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaTurmas">
+        <!-- Turmas vão aqui -->
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    const tabela = document.getElementById('tabelaTurmas');
+    const dataHoraEl = document.getElementById('dataHora');
+
+    // Dados fictícios para teste
+    const turmas = [
+      { turma: "AIB-CER-08", aula1: "SALA 12", aula2: "SALA 12" },
+      { turma: "AIT-ATI-01", aula1: "LAB 05", aula2: "LAB 05" },
+      { turma: "AIB-ERDAE-03", aula1: "ELETROPOSTOS", aula2: "ELETROPOSTOS" },
+      { turma: "AIB-ELM-09", aula1: "SALA 13", aula2: "LAB PROJETOS" },
+      { turma: "HTC-ELT-2-46", aula1: "LAB PROJETOS", aula2: "SALA 05" },
+      { turma: "AIT-MEC-38", aula1: "SALA 17", aula2: "SALA 17" },
+      { turma: "AIT-METAL-06", aula1: "SALA 18", aula2: "SALA 18" }
+      // Adicione quantas turmas quiser
+    ];
+
+    function carregarTabela() {
+      tabela.innerHTML = '';
+      turmas.forEach(t => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${t.turma}</td><td>${t.aula1}</td><td>${t.aula2}</td>`;
+        tabela.appendChild(tr);
+      });
+    }
+
+    function atualizarDataHora() {
+      const now = new Date();
+      const formatted = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
+      dataHoraEl.textContent = formatted;
+    }
+
+    // Atualiza a cada 1 segundo
+    setInterval(atualizarDataHora, 1000);
+    carregarTabela();
+    atualizarDataHora();
+  </script>
+
+</body>
+
+</html>

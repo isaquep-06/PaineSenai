@@ -5,9 +5,11 @@
     "express": "^5.2.1",
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.8"
+    "sequelize": "^6.37.8",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "sequelize-cli": "^6.6.5"
-  }
+  },
+  "type": "module"
 }

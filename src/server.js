@@ -1,12 +1,20 @@
-const express = require('express');
+import express from 'express';
+import DatabaseConfig from './database/index.js';
+import turmaRoutes from './routes/turmaRoutes.js'; // <-- import em vez de require
+import salaRoutes from './routes/salaRoutes.js'
+import cors from 'cors'
+
 const app = express();
-const sequelize = require('./database/index');
+app.use(cors())
+app.use(express.json());
 
 // rota raiz
 app.get('/', (req, res) => res.send('Servidor rodando! 🔥🔥'));
 
 // suas rotas
-app.use('/turma', require('./routes/turmaRoutes'));
+app.use('/turma', turmaRoutes);
+app.use('/sala', salaRoutes);
+
 
 // servidor
 app.listen(3000, () => console.log('Servidor rodando na porta 3000 🟢🟢'));

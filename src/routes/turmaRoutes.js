@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express'
+import TurmaController from '../controllers/TurmaController.js';
+
 const router = express.Router();
-const TurmaController = require('../controllers/TurmaController');
 
-router.get('/', TurmaController.listar);
-router.post('/', TurmaController.criar);
+router.get('/', TurmaController.index);
+router.post('/', TurmaController.store);
 
-module.exports = router;
+export default router
